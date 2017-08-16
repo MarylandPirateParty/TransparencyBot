@@ -33,7 +33,7 @@ if($server['SOCKET']){
       $parts = explode(":",$server['READ_BUFFER']); 
       $message = $parts[2];
       error_log("<div>".date('r')." $name: $message </div>", 3, $meeting_log); 
-      error_log(date('r')." [meeting active] ".$server['READ_BUFFER'], 3, $debug_log);
+      error_log(date('r')." [meeting active] [$i] ".$server['READ_BUFFER'], 3, $debug_log);
     }else{
       error_log(date('r')." [receive] [$i] ".$server['READ_BUFFER'], 3, $debug_log);
     }
