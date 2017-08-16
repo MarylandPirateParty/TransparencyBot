@@ -54,6 +54,7 @@ if($server['SOCKET']){
     $pos = strpos($server['READ_BUFFER'], 'start meeting');
     if ($pos !== false){  
       SendCommand("PRIVMSG #mdpp :Meeting log has started");  
+      SendCommand("NAMES #mdpp");
       touch($lockfile);
       error_log("\n\n".date('r')." Meeting Has Started <br>", 3, $meeting_log);
       $refresh = '<meta http-equiv="refresh" content="5">';
@@ -67,14 +68,6 @@ if($server['SOCKET']){
       SendCommand("PRIVMSG #mdpp :Meeting log has ended");  
       unlink($lockfile);
       error_log("\n\n".date('r')." Meeting Complete<br>", 3, $meeting_log);
-    }
-    //
-    //// third command
-    //
-    $pos = strpos($server['READ_BUFFER'], 'roll call');
-    if ($pos !== false){ 
-      SendCommand("NAMES #mdpp");
-      error_log("\n\n".date('r')." Requesting list from server<br>", 3, $meeting_log);
     }
     //If the server has sent the ping command 
     if(substr($server['READ_BUFFER'], 0, 6) == "PING :"){ 
@@ -93,8 +86,10 @@ function SendCommand ($cmd){
   @fwrite($server['SOCKET'], $cmd, strlen($cmd)); //sends the command to the server 
   //echo "[SEND] $cmd <br>"; // displays it to the screen 
   error_log(date('r')." [send] ".$cmd, 3 , $debug_log);
-  // give 5 seconds before next command
-  sleep(5);
+  // give 1 seconds before next command
+  sleep(1);
+  // not sure if this would be bad...
+  flush();
 } 
 
 ?>
