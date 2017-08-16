@@ -9,4 +9,7 @@ $server_port = 6667;
 $server_chan = "#$short"; 
 // log file to monitor bot performance
 $debug_log = "debug.log"; 
+if ($debug_log != ''){
+  touch($debug_log);
+}
 ?>
