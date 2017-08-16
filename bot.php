@@ -52,8 +52,7 @@ if($server['SOCKET']){
     //// first command
     //
     $pos = strpos($server['READ_BUFFER'], 'start meeting');
-    if ($pos !== false){ 
-      SendCommand("NAMES #mdpp"); 
+    if ($pos !== false){  
       SendCommand("PRIVMSG #mdpp :Meeting log has started");  
       touch($lockfile);
       error_log("\n\n".date('r')." Meeting Has Started <br>", 3, $meeting_log);
@@ -68,6 +67,14 @@ if($server['SOCKET']){
       SendCommand("PRIVMSG #mdpp :Meeting log has ended");  
       unlink($lockfile);
       error_log("\n\n".date('r')." Meeting Complete<br>", 3, $meeting_log);
+    }
+    //
+    //// third command
+    //
+    $pos = strpos($server['READ_BUFFER'], 'roll call');
+    if ($pos !== false){ 
+      SendCommand("NAMES #mdpp");
+      error_log("\n\n".date('r')." Requesting list from server<br>", 3, $meeting_log);
     }
     //If the server has sent the ping command 
     if(substr($server['READ_BUFFER'], 0, 6) == "PING :"){ 
