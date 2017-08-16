@@ -44,6 +44,7 @@ if($server['SOCKET']){
             }else{
                 $speakers[$name] = 0;
                 SendCommand("PRIVMSG #mdpp :Welcome $name, could you tell your name and county to the group for the current meeting that is in progress.\n\r");  
+                sleep(1);
                 error_log("<div style='border:1px solid black; padding:5px;'>".date('r')." Welcome $name, could you tell your name and county to the group for the current meeting that is in progress.</div>", 3, $meeting_log); 
             }
             error_log("<div style='border:1px solid black; padding:5px;'>".date('r')." <b>$name:</b> $message </div>", 3, $meeting_log); 
