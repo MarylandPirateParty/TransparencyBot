@@ -58,6 +58,8 @@ if($server['SOCKET']){
       $logging='on';  
       touch($lockfile);
       error_log("\n\n".date('r')." Meeting Has Started <br>", 3, $meeting_log);
+      $refresh = '<meta http-equiv="refresh" content="5">';
+      error_log($refresh, 3, $meeting_log);
     }
     //
     //// second command
