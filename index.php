@@ -8,7 +8,7 @@ $all = scandir('.');
 foreach ($all as $file) {
  $pos = strpos($file,'html');
  if ($pos !== false){
-  echo "<li><a target='_Blank' href='$file'>$file</a></li>";
+  echo "<li>Meeting on: <a target='_Blank' href='$file'>$file</a></li>";
  }
 }
 ?>
