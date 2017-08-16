@@ -27,4 +27,6 @@ Update
 * cd TransparencyBot; git pull origin master
 
 Run
-* watch -n60 -x php -f bot.php
+* crontab -e
+* "* * * * * /usr/bin/php -f /var/www/html/TransparencyBot/bot.php >/dev/null 2>&1"
+
