@@ -39,7 +39,11 @@ if($server['SOCKET']){
           $pos_t2 = strpos($server['READ_BUFFER'], 'PING');
           $pos_t3 = strpos($server['READ_BUFFER'], 'ChanServ');
           if ($pos_t1 === false && $pos_t2 === false){
-            touch("./$name");
+            if(isset($speakers[$name])){
+                $speakers[$name] = $speakers[$name] + 1;
+            }else{
+                $speakers[$name] = 0;
+            }
             error_log("<div style='border:1px solid black; padding:5px;'>".date('r')." <b>$name:</b> $message </div>", 3, $meeting_log); 
           }
           if ($pos_t3 !== false){
@@ -79,7 +83,11 @@ if($server['SOCKET']){
     if ($pos !== false){ 
       SendCommand("PRIVMSG #mdpp :Meeting log has ended \n\r");  
       unlink($lockfile);
+      ob_start();
+      print_r($speakers);
+      $talkers = ob_get_clean();
       error_log("<div style='border:1px solid black; padding:5px; background-color:lightblue;'>".date('r')." Meeting Complete </div>", 3, $meeting_log);
+      error_log("<div style='border:1px solid black; padding:5px; background-color:lightblue;'><pre>$talkers</pre></div>", 3, $meeting_log);
     }
     //If the server has sent the ping command 
     if(substr($server['READ_BUFFER'], 0, 6) == "PING :"){ 
