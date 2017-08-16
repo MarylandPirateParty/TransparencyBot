@@ -1,4 +1,6 @@
 <?php
+//Also inclue our config file 
+include("config.php"); 
 exec("ps -A | grep -i php | grep -v grep", $pids);
 if (count($pids) > 0) {
     error_log(date('r')." Bot is Healthy \n", 3 , $debug_log);
@@ -7,10 +9,8 @@ if (count($pids) > 0) {
 error_log(date('r')." Bot is Missing - DOING CPR \n", 3 , $debug_log);
 $logging='off';
 $i=0;
-//First lets set the timeout limit to 0 so the page wont time out. 
+//now that we are good to begin set the timeout limit to 0 so the page wont time out. 
 set_time_limit(0); 
-//Also inclue our config file 
-include("config.php"); 
 //Second lets grab our data from our form. 
 $nickname = strtoupper($shortname)."bot".rand(1,999); 
 //Now lets check to see if there is a nickname set. 
