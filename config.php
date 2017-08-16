@@ -12,4 +12,5 @@ $meeting_log = "/var/www/html/TransparencyBot/".$shortname.'_'.date('Y-m-d').'.h
 // log file to monitor bot performance
 global $debug_log;
 $debug_log = "/var/www/html/TransparencyBot/debug.log"; 
+$lockfile = "meeting_active.info";
 ?>
