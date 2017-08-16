@@ -33,7 +33,8 @@ if($server['SOCKET']){
       $name = $parts[0];
       $parts = explode(":",$server['READ_BUFFER']); 
       $message = $parts[2];
-      error_log(date('r')." $name: $message \n", 3, $meeting_log); 
+      error_log("<div>".date('r')." $name: $message </div>", 3, $meeting_log); 
+      error_log(date('r')." [meeting active] ".$server['READ_BUFFER'], 3, $debug_log);
     }else{
       error_log(date('r')." [receive] ".$server['READ_BUFFER'], 3, $debug_log);
     }
@@ -55,7 +56,7 @@ if($server['SOCKET']){
       SendCommand("NAMES #mdpp"); 
       SendCommand("PRIVMSG #mdpp :Meeting log has started"); 
       $logging='on';  
-      error_log("\n\n".date('r')." Meeting Has Started\n", 3, $meeting_log);
+      error_log("\n\n".date('r')." Meeting Has Started <br>", 3, $meeting_log);
     }
     //
     //// second command
@@ -64,7 +65,7 @@ if($server['SOCKET']){
     if ($pos !== false){ 
       SendCommand("PRIVMSG #mdpp :Meeting log has ended");  
       $logging='off';
-      error_log("\n\n".date('r')." Meeting Complete\n", 3, $meeting_log);
+      error_log("\n\n".date('r')." Meeting Complete<br>", 3, $meeting_log);
     }
     //If the server has sent the ping command 
     if(substr($server['READ_BUFFER'], 0, 6) == "PING :"){ 
