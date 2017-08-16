@@ -37,8 +37,12 @@ if($server['SOCKET']){
           // ignore system messages in meeting log
           $pos_t1 = strpos($message, 'NickServ');
           $pos_t2 = strpos($message, 'PING');
+          $pos_t3 = strpos($message, 'NAMES');
           if ($pos_t1 === false && $pos_t2 === false){
             error_log("<div style='border:1px solid black; padding:5px;'>".date('r')." <b>$name:</b> $message </div>", 3, $meeting_log); 
+          }
+          if ($pos_t3 !== false){
+            error_log("<div style='border:1px solid black; padding:5px; background-color:orange;'>".date('r')." ".$server['READ_BUFFER']." </div>", 3, $meeting_log); 
           }
       }
       error_log(date('r')." [meeting active] [$i] ".$server['READ_BUFFER'], 3, $debug_log);
