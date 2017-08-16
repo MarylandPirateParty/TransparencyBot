@@ -34,3 +34,5 @@ Install
 Update
 * cd /var/www/html/TransparencyBot; git pull origin master
 
+Notes
+* Meeting activity start/end should persist if the bot is restarted mid meeting
