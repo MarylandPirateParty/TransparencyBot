@@ -13,4 +13,5 @@ $meeting_log = "/var/www/html/TransparencyBot/".$shortname.'_'.date('Y-m-d').'.h
 global $debug_log;
 $debug_log = "/var/www/html/TransparencyBot/debug.log"; 
 $lockfile = "/var/www/html/TransparencyBot/meeting_active.info";
+$logo = "/wp-content/uploads/2017/07/MarylandPiratePartySmall.png";
 ?>
