@@ -1,5 +1,11 @@
 # TransparencyBot
 IRC Bot used for Logging Weekly Meetings
+
+## Commands
+* start meeting
+* end meeting
+
+## File Index
 * config.php
 * bot.php 
 
