@@ -43,6 +43,7 @@ if($server['SOCKET']){
                 $speakers[$name] = $speakers[$name] + 1;
             }else{
                 $speakers[$name] = 0;
+                SendCommand("PRIVMSG #mdpp :Welcome $name, could you tell your name and county to the group for me. \n\r");  
             }
             error_log("<div style='border:1px solid black; padding:5px;'>".date('r')." <b>$name:</b> $message </div>", 3, $meeting_log); 
           }
@@ -83,11 +84,14 @@ if($server['SOCKET']){
     if ($pos !== false){ 
       SendCommand("PRIVMSG #mdpp :Meeting log has ended \n\r");  
       unlink($lockfile);
-      ob_start();
-      print_r($speakers);
-      $talkers = ob_get_clean();
       error_log("<div style='border:1px solid black; padding:5px; background-color:lightblue;'>".date('r')." Meeting Complete </div>", 3, $meeting_log);
-      error_log("<div style='border:1px solid black; padding:5px; background-color:lightblue;'><pre>$talkers</pre></div>", 3, $meeting_log);
+      foreach($speakers as $name => $count ){
+        SendCommand("PRIVMSG #mdpp :Thank you $name for contributing $count messages to the meeting. \n\r");  
+        error_log("<div style='border:1px solid black; padding:5px; background-color:lightblue;'>Thank you $name for contributing $count messages to the meeting.</div>", 3, $meeting_log);          
+      }
+        
+      
+
     }
     //If the server has sent the ping command 
     if(substr($server['READ_BUFFER'], 0, 6) == "PING :"){ 
