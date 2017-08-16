@@ -56,6 +56,7 @@ if($server['SOCKET']){
       SendCommand("NAMES #mdpp"); 
       SendCommand("PRIVMSG #mdpp :Meeting log has started"); 
       $logging='on';  
+      touch($lockfile);
       error_log("\n\n".date('r')." Meeting Has Started <br>", 3, $meeting_log);
     }
     //
@@ -65,6 +66,7 @@ if($server['SOCKET']){
     if ($pos !== false){ 
       SendCommand("PRIVMSG #mdpp :Meeting log has ended");  
       $logging='off';
+      unlink($lockfile);
       error_log("\n\n".date('r')." Meeting Complete<br>", 3, $meeting_log);
     }
     //If the server has sent the ping command 
