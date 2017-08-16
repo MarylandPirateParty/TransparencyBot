@@ -1,5 +1,5 @@
 <?php 
-date_default_timezone_set("Asia/America/New_York");
+date_default_timezone_set("America/America/New_York");
 // Shortname
 $shortname = "mdpp";
 //The server host is the IP or DNS of the IRC server. 
