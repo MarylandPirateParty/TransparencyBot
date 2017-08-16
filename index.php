@@ -1,5 +1,6 @@
 <title>#mdpp Weekly Meetings</title>
-<div>Weekly Meeting Archive</div>
+<img src="<?PHP echo $logo;?>">
+<div><?PHP $chan_name;?> Weekly Meeting Archive</div>
 <div>Click to open any meeting in a new tab</div>
 <?PHP
 $all = scandir('.');
