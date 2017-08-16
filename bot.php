@@ -3,8 +3,8 @@
 include("config.php"); 
 exec("ps -A | grep -i php | grep -v grep", $pids);
 $instances = count($pids);
-if ($instances == 1) {
-    error_log(date('r')." Bot is Healthy : $instances \n", 3 , $debug_log);
+if ($instances == 2) {
+    error_log(date('r')." Bot System is Healthy : $instances \n", 3 , $debug_log);
     exit(0);
 }
 error_log(date('r')." Bot is Missing - DOING CPR \n", 3 , $debug_log);
