@@ -15,3 +15,7 @@ IRC Bot used for Logging Weekly Meetings
 * Commands are stored here
 
 **Code from almost EVERY example of PHP/IRC was used in some way.**
+
+# Requirements
+* php
+* git
