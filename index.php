@@ -1,6 +1,7 @@
-<title>#mdpp Weekly Meetings</title>
+<?PHP include("config.php"); ?>
+<title><?PHP $chan_name;?> Weekly Meeting Vault</title>
 <img src="<?PHP echo $logo;?>">
-<div><?PHP $chan_name;?> Weekly Meeting Archive</div>
+<div><?PHP $chan_name;?> Weekly Meeting Vault</div>
 <div>Click to open any meeting in a new tab</div>
 <?PHP
 $all = scandir('.');
