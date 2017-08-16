@@ -27,7 +27,8 @@ if($server['SOCKET']){
   while(!feof($server['SOCKET'])){ 
     $server['READ_BUFFER'] = fgets($server['SOCKET'], 1024); //get a line of data from the server 
     //echo "[RECIVE] ".$server['READ_BUFFER']."<br>\n\r"; //display the recived data from the server 
-    if(file_exists($lockfile)){
+    // try to exclude first 100 lines of a reconnect
+    if(file_exists($lockfile) && $i > 100){
       $parts = explode("!",$server['READ_BUFFER']);
       $name = $parts[0];
       $parts = explode(":",$server['READ_BUFFER']); 
