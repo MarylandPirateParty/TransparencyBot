@@ -35,7 +35,7 @@ if($server['SOCKET']){
       error_log("<div>".date('r')." $name: $message </div>", 3, $meeting_log); 
       error_log(date('r')." [meeting active] ".$server['READ_BUFFER'], 3, $debug_log);
     }else{
-      error_log(date('r')." [receive] ".$server['READ_BUFFER'], 3, $debug_log);
+      error_log(date('r')." [receive] [$i] ".$server['READ_BUFFER'], 3, $debug_log);
     }
     /* 
     IRC Sends a "PING" command to the client which must be anwsered with a "PONG" 
