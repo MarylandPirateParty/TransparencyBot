@@ -21,7 +21,7 @@ IRC Bot used for Logging Weekly Meetings
 * git
 
 Install
-* cd /var/www/html; git clone https://github.com/MarylandPirateParty/TransparencyBot.git
+* cd /var/www/html; git clone https://github.com/MarylandPirateParty/TransparencyBot.git; chown www-data:www-data TransparencyBot 
 * crontab -e (use nano)
 * add cron: * * * * * /usr/bin/php -f /var/www/html/TransparencyBot/bot.php >/dev/null 2>&1
 
