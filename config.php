@@ -15,4 +15,7 @@ global $debug_log;
 $debug_log = "/var/www/html/TransparencyBot/debug.log"; 
 $lockfile = "/var/www/html/TransparencyBot/meeting_active.info";
 $logo = "/wp-content/uploads/2017/07/MarylandPiratePartySmall.png";
+// who talks
+global $speakers;
+$speakers=array();
 ?>
