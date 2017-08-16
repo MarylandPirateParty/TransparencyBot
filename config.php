@@ -9,5 +9,5 @@ $server_port = 6667;
 //Server Chanel, After connecting to the IRC server this is the channel it will join. 
 $server_chan = "#$short"; 
 // log file to monitor bot performance
-$debug_log = "debug.log"; 
+$debug_log = "/var/www/html/TransparencyBot/debug.log"; 
 ?>
