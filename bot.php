@@ -37,7 +37,7 @@ if($server['SOCKET']){
           // ignore system messages in meeting log
           $pos_t1 = strpos($message, 'NickServ');
           $pos_t2 = strpos($message, 'PING');
-          $pos_t3 = strpos($message, 'ChanServ');
+          $pos_t3 = strpos($message, '#mdpp');
           if ($pos_t1 === false && $pos_t2 === false){
             error_log("<div style='border:1px solid black; padding:5px;'>".date('r')." <b>$name:</b> $message </div>", 3, $meeting_log); 
           }
