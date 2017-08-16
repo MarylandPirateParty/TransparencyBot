@@ -8,7 +8,6 @@ if ($instances == 2) {
     exit(0);
 }
 error_log(date('r')." Bot is Missing - DOING CPR \n", 3 , $debug_log);
-$logging='off';
 $i=0;
 //now that we are good to begin set the timeout limit to 0 so the page wont time out. 
 set_time_limit(0); 
@@ -28,7 +27,7 @@ if($server['SOCKET']){
   while(!feof($server['SOCKET'])){ 
     $server['READ_BUFFER'] = fgets($server['SOCKET'], 1024); //get a line of data from the server 
     //echo "[RECIVE] ".$server['READ_BUFFER']."<br>\n\r"; //display the recived data from the server 
-    if($logging == 'on'){
+    if(file_exists($lockfile)){
       $parts = explode("!",$server['READ_BUFFER']);
       $name = $parts[0];
       $parts = explode(":",$server['READ_BUFFER']); 
@@ -54,8 +53,7 @@ if($server['SOCKET']){
     $pos = strpos($server['READ_BUFFER'], 'start meeting');
     if ($pos !== false){ 
       SendCommand("NAMES #mdpp"); 
-      SendCommand("PRIVMSG #mdpp :Meeting log has started"); 
-      $logging='on';  
+      SendCommand("PRIVMSG #mdpp :Meeting log has started");  
       touch($lockfile);
       error_log("\n\n".date('r')." Meeting Has Started <br>", 3, $meeting_log);
       $refresh = '<meta http-equiv="refresh" content="5">';
@@ -67,7 +65,6 @@ if($server['SOCKET']){
     $pos = strpos($server['READ_BUFFER'], 'end meeting');
     if ($pos !== false){ 
       SendCommand("PRIVMSG #mdpp :Meeting log has ended");  
-      $logging='off';
       unlink($lockfile);
       error_log("\n\n".date('r')." Meeting Complete<br>", 3, $meeting_log);
     }
