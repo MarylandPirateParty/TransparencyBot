@@ -63,7 +63,7 @@ if($server['SOCKET']){
       SendCommand("PRIVMSG #mdpp :Meeting log has started");  
       SendCommand("NAMES #mdpp");
       touch($lockfile);
-      error_log("\n\n".date('r')." Meeting Has Started <br>", 3, $meeting_log);
+      error_log("<div style='border:1px solid black; padding:5px; background-color:lightgreen;'>".date('r')." Meeting Has Started</div>", 3, $meeting_log);
       $refresh = '<meta http-equiv="refresh" content="5">';
       error_log($refresh, 3, $meeting_log);
     }
@@ -74,7 +74,7 @@ if($server['SOCKET']){
     if ($pos !== false){ 
       SendCommand("PRIVMSG #mdpp :Meeting log has ended");  
       unlink($lockfile);
-      error_log("\n\n".date('r')." Meeting Complete<br>", 3, $meeting_log);
+      error_log("<div style='border:1px solid black; padding:5px; background-color:lightblue;'>".date('r')." Meeting Complete </div>", 3, $meeting_log);
     }
     //If the server has sent the ping command 
     if(substr($server['READ_BUFFER'], 0, 6) == "PING :"){ 
