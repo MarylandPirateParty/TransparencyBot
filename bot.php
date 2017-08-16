@@ -33,7 +33,9 @@ if($server['SOCKET']){
       $name = $parts[0];
       $parts = explode(":",$server['READ_BUFFER']); 
       $message = $parts[2];
-      error_log("<div>".date('r')." $name: $message </div>", 3, $meeting_log); 
+      if (trim($message) != '') {  
+        error_log("<div>".date('r')." $name: $message </div>", 3, $meeting_log); 
+      }
       error_log(date('r')." [meeting active] [$i] ".$server['READ_BUFFER'], 3, $debug_log);
     }else{
       error_log(date('r')." [receive] [$i] ".$server['READ_BUFFER'], 3, $debug_log);
@@ -86,10 +88,6 @@ function SendCommand ($cmd){
   @fwrite($server['SOCKET'], $cmd, strlen($cmd)); //sends the command to the server 
   //echo "[SEND] $cmd <br>"; // displays it to the screen 
   error_log(date('r')." [send] ".$cmd, 3 , $debug_log);
-  // give 1 seconds before next command
-  sleep(1);
-  // not sure if this would be bad...
-  flush();
 } 
 
 ?>
