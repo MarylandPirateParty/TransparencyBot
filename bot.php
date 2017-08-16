@@ -35,7 +35,7 @@ if($server['SOCKET']){
       $message = $parts[2];
       error_log(date('r')." $name: $message \n", 3, $meeting_log); 
     }else{
-      error_log(date('r')." [receive] [".$server['READ_BUFFER']."] \n", 3, $debug_log);
+      error_log(date('r')." [receive] ".$server['READ_BUFFER'], 3, $debug_log);
     }
     /* 
     IRC Sends a "PING" command to the client which must be anwsered with a "PONG" 
@@ -82,7 +82,7 @@ function SendCommand ($cmd){
   global $server; //Extends our $server array to this function 
   @fwrite($server['SOCKET'], $cmd, strlen($cmd)); //sends the command to the server 
   //echo "[SEND] $cmd <br>"; // displays it to the screen 
-  error_log(date('r')." [send] [$cmd] \n", 3 , $debug_log);
+  error_log(date('r')." [send] ".$cmd, 3 , $debug_log);
 } 
 
 ?>
