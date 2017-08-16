@@ -93,6 +93,8 @@ function SendCommand ($cmd){
   @fwrite($server['SOCKET'], $cmd, strlen($cmd)); //sends the command to the server 
   //echo "[SEND] $cmd <br>"; // displays it to the screen 
   error_log(date('r')." [send] ".$cmd, 3 , $debug_log);
+  // give 5 seconds before next command
+  sleep(5);
 } 
 
 ?>
