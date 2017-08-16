@@ -1,5 +1,5 @@
 <?php
-exec("ps -A | grep -i $processName | grep -v grep", $pids);
+exec("ps -A | grep -i php | grep -v grep", $pids);
 if (count($pids) > 0) {
     exit(0);
 }
