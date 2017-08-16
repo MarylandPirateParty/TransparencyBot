@@ -1,4 +1,8 @@
 <?php
+exec("ps -A | grep -i $processName | grep -v grep", $pids);
+if (count($pids) > 0) {
+    exit(0);
+}
 $logging='off';
 $i=0;
 //First lets set the timeout limit to 0 so the page wont time out. 
@@ -6,7 +10,7 @@ set_time_limit(0);
 //Also inclue our config file 
 include("config.php"); 
 //Second lets grab our data from our form. 
-$nickname = "MDPPbot".rand(1,999); 
+$nickname = strtoupper($shortname)."bot".rand(1,999).'-'.PIDFILE; 
 //Now lets check to see if there is a nickname set. 
 //Ok, We have a nickname, now lets connect. 
 $server = array(); //we will use an array to store all the server data. 
@@ -24,7 +28,8 @@ if($server['SOCKET']){
     if($logging == 'on'){
       $parts = explode("!",$server['READ_BUFFER']);
       $name = $parts[0];
-      $parts = explode(":",$server['READ_BUFFER']); $message = $parts[2];
+      $parts = explode(":",$server['READ_BUFFER']); 
+      $message = $parts[2];
       error_log(date('r')." $name: $message \n", 3, "mdpp.log"); 
     }
     /* 
