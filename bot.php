@@ -37,7 +37,7 @@ if($server['SOCKET']){
           // ignore system messages in meeting log
           $pos_t1 = strpos($server['READ_BUFFER'], 'MDPPbot');
           $pos_t2 = strpos($server['READ_BUFFER'], 'PING');
-          $pos_t3 = strpos($server['READ_BUFFER'], '#mdpp');
+          $pos_t3 = strpos($server['READ_BUFFER'], 'ChanServ');
           if ($pos_t1 === false && $pos_t2 === false){
             error_log("<div style='border:1px solid black; padding:5px;'>".date('r')." <b>$name:</b> $message </div>", 3, $meeting_log); 
           }
@@ -64,8 +64,8 @@ if($server['SOCKET']){
     //
     $pos = strpos($server['READ_BUFFER'], 'start meeting');
     if ($pos !== false){  
-      //SendCommand("PRIVMSG #mdpp :Meeting log has started");  
-      SendCommand("NAMES #mdpp");
+      SendCommand("PRIVMSG #mdpp :Meeting log has started \n\r");  
+      SendCommand("NAMES #mdpp\n\r");
       touch($lockfile);
       error_log("<div style='border:1px solid black; padding:5px; background-color:lightgreen;'>".date('r')." Meeting Has Started</div>", 3, $meeting_log);
       $refresh = '<meta http-equiv="refresh" content="5">';
@@ -76,7 +76,7 @@ if($server['SOCKET']){
     //
     $pos = strpos($server['READ_BUFFER'], 'end meeting');
     if ($pos !== false){ 
-      //SendCommand("PRIVMSG #mdpp :Meeting log has ended");  
+      SendCommand("PRIVMSG #mdpp :Meeting log has ended \n\r");  
       unlink($lockfile);
       error_log("<div style='border:1px solid black; padding:5px; background-color:lightblue;'>".date('r')." Meeting Complete </div>", 3, $meeting_log);
     }
