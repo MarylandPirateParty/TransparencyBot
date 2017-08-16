@@ -19,3 +19,12 @@ IRC Bot used for Logging Weekly Meetings
 # Requirements
 * php
 * git
+
+Install
+* git clone https://github.com/MarylandPirateParty/TransparencyBot.git
+
+Update
+* cd TransparencyBot; git pull origin master
+
+Run
+* watch -n60 -x php -f bot.php
