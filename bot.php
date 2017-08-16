@@ -10,7 +10,7 @@ set_time_limit(0);
 //Also inclue our config file 
 include("config.php"); 
 //Second lets grab our data from our form. 
-$nickname = strtoupper($shortname)."bot".rand(1,999).'-'.PIDFILE; 
+$nickname = strtoupper($shortname)."bot".rand(1,999); 
 //Now lets check to see if there is a nickname set. 
 //Ok, We have a nickname, now lets connect. 
 $server = array(); //we will use an array to store all the server data. 
