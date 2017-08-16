@@ -32,7 +32,7 @@ if($server['SOCKET']){
       $name = $parts[0];
       $parts = explode(":",$server['READ_BUFFER']); 
       $message = $parts[2];
-      error_log(date('r')." $name: $message \n", 3, "mdpp.log"); 
+      error_log(date('r')." $name: $message \n", 3, $meeting_log); 
     }
     /* 
     IRC Sends a "PING" command to the client which must be anwsered with a "PONG" 
