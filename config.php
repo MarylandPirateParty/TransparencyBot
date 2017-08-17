@@ -1,5 +1,7 @@
 <?php 
 date_default_timezone_set("America/New_York");
+// IRC command prefix
+$command_prefix = "+";
 // Shortname
 $shortname = "mdpp";
 $fullname = "Maryland Pirate Party";
