@@ -2,14 +2,14 @@
 //
 //// start command
 //
-$pos = strpos($server['READ_BUFFER'], '+help');
+$pos = strpos($server['READ_BUFFER'], $command_prefix.'help');
 if ($pos !== false){  
   SendCommand("PRIVMSG #mdpp :I have made the following public commands available \n\r");
-  SendCommand("PRIVMSG #mdpp :+help - You just ran that command \n\r");
-  SendCommand("PRIVMSG #mdpp :+start meeting - Turn On Meeting System\n\r");
-  SendCommand("PRIVMSG #mdpp :+end meeting - Turn Off Meeting System\n\r");
-  SendCommand("PRIVMSG #mdpp :+start agenda - Turn On Agenda System\n\r");
-  SendCommand("PRIVMSG #mdpp :+end agenda - Turn Off Agenda System\n\r");
+  SendCommand("PRIVMSG #mdpp :".$command_prefix."help - You just ran that command \n\r");
+  SendCommand("PRIVMSG #mdpp :".$command_prefix."start meeting - Turn On Meeting System\n\r");
+  SendCommand("PRIVMSG #mdpp :".$command_prefix."end meeting - Turn Off Meeting System\n\r");
+  SendCommand("PRIVMSG #mdpp :".$command_prefix."start agenda - Turn On Agenda System\n\r");
+  SendCommand("PRIVMSG #mdpp :".$command_prefix."end agenda - Turn Off Agenda System\n\r");
 }
 
 
@@ -17,7 +17,7 @@ if ($pos !== false){
 //
 //// start command
 //
-$pos = strpos($server['READ_BUFFER'], '+start meeting');
+$pos = strpos($server['READ_BUFFER'], $command_prefix.'start meeting');
 if ($pos !== false){  
   SendCommand("PRIVMSG #mdpp :Meeting log has started \n\r");  
   SendCommand("NAMES #mdpp\n\r");
@@ -31,7 +31,7 @@ if ($pos !== false){
 //
 //// end meeting
 //
-$pos = strpos($server['READ_BUFFER'], '+end meeting');
+$pos = strpos($server['READ_BUFFER'], $command_prefix.'end meeting');
 if ($pos !== false){ 
   SendCommand("PRIVMSG #mdpp :Meeting log has ended \n\r");  
   unlink($lockfile);
@@ -45,7 +45,7 @@ if ($pos !== false){
 //
 //// start agenda
 //
-$pos = strpos($server['READ_BUFFER'], '+start agenda');
+$pos = strpos($server['READ_BUFFER'], $command_prefix.'start agenda');
 if ($pos !== false){  
   SendCommand("PRIVMSG #mdpp :Agenda log is on \n\r");  
   SendCommand("NAMES #mdpp\n\r");
@@ -59,7 +59,7 @@ if ($pos !== false){
 //
 //// end agenda
 //
-$pos = strpos($server['READ_BUFFER'], '+end agenda');
+$pos = strpos($server['READ_BUFFER'], $command_prefix.'end agenda');
 if ($pos !== false){ 
   SendCommand("PRIVMSG #mdpp :Agenda log is off \n\r");  
   unlink($lockfile);
