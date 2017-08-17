@@ -45,9 +45,9 @@ if(file_exists($lockfile_agenda) && $i > 100){
             $speakers[$name] = $speakers[$name] + 1;
         }else{
             $speakers[$name] = 0;
-            SendCommand("PRIVMSG #mdpp :Welcome $name, could you tell your name and county to the group for the current meeting that is in progress.\n\r");  
-            sleep(1);
-            error_log("<div style='border:1px solid black; padding:5px;'>Maryland Pirate Party Welcomes You $name, could you tell your name and county to the group for the current meeting that is in progress.</div>", 3, $agenda_log); 
+            //SendCommand("PRIVMSG #mdpp :Welcome $name, could you tell your name and county to the group for the current meeting that is in progress.\n\r");  
+            //sleep(1);
+            //error_log("<div style='border:1px solid black; padding:5px;'>Maryland Pirate Party Welcomes You $name, could you tell your name and county to the group for the current meeting that is in progress.</div>", 3, $agenda_log); 
         }
         error_log("<div style='border:1px solid black; padding:5px;'>".date('r')." <b>$name:</b> $message </div>", 3, $agenda_log); 
       }
