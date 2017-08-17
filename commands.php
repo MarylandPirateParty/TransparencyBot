@@ -1,6 +1,6 @@
 <?PHP
 //
-//// start command
+//// help 
 //
 $pos = strpos($server['READ_BUFFER'], $command_prefix.'help');
 if ($pos !== false){  
@@ -18,7 +18,7 @@ if ($pos !== false){
 
 
 //
-//// start command
+//// start meeting
 //
 $pos = strpos($server['READ_BUFFER'], $command_prefix.'start meeting');
 if ($pos !== false){  
@@ -53,9 +53,9 @@ if ($pos !== false){
   SendCommand("PRIVMSG #mdpp :Agenda log is on \n\r");  
   SendCommand("NAMES #mdpp\n\r");
   touch($lockfile_agenda);
-  error_log("<div style='border:1px solid black; padding:5px; background-color:pink;'>".date('r')." Agenda Has Started</div>", 3, $meeting_log);
+  error_log("<div style='border:1px solid black; padding:5px; background-color:pink;'>".date('r')." Agenda Has Started</div>", 3, $agenda_log);
   $refresh = '<meta http-equiv="refresh" content="5">';
-  error_log($refresh, 3, $meeting_log);
+  error_log($refresh, 3, $agenda_log);
 }
 
 
@@ -66,10 +66,10 @@ $pos = strpos($server['READ_BUFFER'], $command_prefix.'end agenda');
 if ($pos !== false){ 
   SendCommand("PRIVMSG #mdpp :Agenda log is off \n\r");  
   unlink($lockfile_agenda);
-  error_log("<div style='border:1px solid black; padding:5px; background-color:pink;'>".date('r')." Agenda Complete </div>", 3, $meeting_log);
+  error_log("<div style='border:1px solid black; padding:5px; background-color:pink;'>".date('r')." Agenda Complete </div>", 3, $agenda_log);
   foreach($speakers as $name => $count ){
     SendCommand("PRIVMSG #mdpp :Thank you $name for contributing $count messages to the meeting. \n\r");  
-    error_log("<div style='border:1px solid black; padding:5px; background-color:pink;'>Thank you $name for contributing $count messages to the meeting.</div>", 3, $meeting_log);          
+    error_log("<div style='border:1px solid black; padding:5px; background-color:pink;'>Thank you $name for contributing $count messages to the meeting.</div>", 3, $agenda_log);          
   }
 }
 
@@ -85,12 +85,12 @@ if ($pos !== false){
 }
 
 //
-//// post the meeting to wordpress
+//// post the meeting to wordpress blog?
 //
 $pos = strpos($server['READ_BUFFER'], $command_prefix.'post');
 if ($pos !== false){ 
   // we need to know who to send the history to...
-  SendCommand("PRIVMSG BaltimoreHacker :History Requested \n\r");  
+  SendCommand("PRIVMSG BaltimoreHacker :Post Requested \n\r");  
 }
 
 //
