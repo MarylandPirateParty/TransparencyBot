@@ -29,35 +29,7 @@ if($server['SOCKET']){
     $server['READ_BUFFER'] = fgets($server['SOCKET'], 1024); //get a line of data from the server 
     //echo "[RECIVE] ".$server['READ_BUFFER']."<br>\n\r"; //display the recived data from the server 
     // try to exclude first 100 lines of a reconnect
-    if(file_exists($lockfile) && $i > 100){
-      $parts = explode("!",$server['READ_BUFFER']);
-      $name = $parts[0];
-      $parts = explode(":",$server['READ_BUFFER']); 
-      $message = $parts[2];
-      if (trim($message) != '') {  
-          // ignore system messages in meeting log
-          $pos_t1 = strpos($server['READ_BUFFER'], 'MDPPbot');
-          $pos_t2 = strpos($server['READ_BUFFER'], 'PING');
-          $pos_t3 = strpos($server['READ_BUFFER'], 'ChanServ');
-          if ($pos_t1 === false && $pos_t2 === false){
-            if(isset($speakers[$name])){
-                $speakers[$name] = $speakers[$name] + 1;
-            }else{
-                $speakers[$name] = 0;
-                SendCommand("PRIVMSG #mdpp :Welcome $name, could you tell your name and county to the group for the current meeting that is in progress.\n\r");  
-                sleep(1);
-                error_log("<div style='border:1px solid black; padding:5px;'>".date('r')." Welcome $name, could you tell your name and county to the group for the current meeting that is in progress.</div>", 3, $meeting_log); 
-            }
-            error_log("<div style='border:1px solid black; padding:5px;'>".date('r')." <b>$name:</b> $message </div>", 3, $meeting_log); 
-          }
-          if ($pos_t3 !== false){
-            error_log("<div style='border:1px solid black; padding:5px; background-color:orange;'>Pirates in Attendance ".$server['READ_BUFFER']." </div>", 3, $meeting_log); 
-          }
-      }
-      error_log(date('r')." [meeting active] [$i] ".$server['READ_BUFFER'], 3, $debug_log);
-    }else{
-      error_log(date('r')." [receive] [$i] ".$server['READ_BUFFER'], 3, $debug_log);
-    }
+    include('log.php');
     /* 
     IRC Sends a "PING" command to the client which must be anwsered with a "PONG" 
     Or the client gets Disconnected 
