@@ -11,7 +11,8 @@ $server_host = "irc.pirateirc.net";
 $server_port = 6667; 
 //Server Chanel, After connecting to the IRC server this is the channel it will join. 
 $server_chan = "#$shortname"; 
-$meeting_log = "/var/www/html/TransparencyBot/".$shortname.'_'.date('Y-m-d').'.html';
+$meeting_log = "/var/www/html/TransparencyBot/".$shortname.'_meeting_'.date('Y-m-d').'.html';
+$agenda_log = "/var/www/html/TransparencyBot/".$shortname.'_agenda_'.date('Y-m-d').'.html';
 // log file to monitor bot performance
 global $debug_log;
 $debug_log = "/var/www/html/TransparencyBot/debug.log"; 
