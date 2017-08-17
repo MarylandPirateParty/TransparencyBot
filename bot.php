@@ -8,6 +8,7 @@ if ($instances == 2) {
     exit(0);
 }
 error_log(date('r')." Bot is Missing - DOING CPR \n", 3 , $debug_log);
+// $i is our command counter
 $i=0;
 //now that we are good to begin set the timeout limit to 0 so the page wont time out. 
 set_time_limit(0); 
@@ -67,34 +68,7 @@ if($server['SOCKET']){
     if($i == 90){ 
       SendCommand("JOIN #mdpp\n\r"); //Join the chanel 
     }
-    //
-    //// start command
-    //
-    $pos = strpos($server['READ_BUFFER'], 'start meeting');
-    if ($pos !== false){  
-      SendCommand("PRIVMSG #mdpp :Meeting log has started \n\r");  
-      SendCommand("NAMES #mdpp\n\r");
-      touch($lockfile);
-      error_log("<div style='border:1px solid black; padding:5px; background-color:lightgreen;'>".date('r')." Meeting Has Started</div>", 3, $meeting_log);
-      $refresh = '<meta http-equiv="refresh" content="5">';
-      error_log($refresh, 3, $meeting_log);
-    }
-    //
-    //// end command
-    //
-    $pos = strpos($server['READ_BUFFER'], 'end meeting');
-    if ($pos !== false){ 
-      SendCommand("PRIVMSG #mdpp :Meeting log has ended \n\r");  
-      unlink($lockfile);
-      error_log("<div style='border:1px solid black; padding:5px; background-color:lightblue;'>".date('r')." Meeting Complete </div>", 3, $meeting_log);
-      foreach($speakers as $name => $count ){
-        SendCommand("PRIVMSG #mdpp :Thank you $name for contributing $count messages to the meeting. \n\r");  
-        error_log("<div style='border:1px solid black; padding:5px; background-color:lightblue;'>Thank you $name for contributing $count messages to the meeting.</div>", 3, $meeting_log);          
-      }
-        
-      
-
-    }
+    include('commands.php');
     //If the server has sent the ping command 
     if(substr($server['READ_BUFFER'], 0, 6) == "PING :"){ 
       SendCommand("PONG :".substr($server['READ_BUFFER'], 6)."\n\r"); //Reply with pong                                                                                                                                                                                                                                                                                                                      //As you can see i dont have it reply with just "PONG" 
