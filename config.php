@@ -18,6 +18,7 @@ global $debug_log;
 $debug_log = "/var/www/html/TransparencyBot/debug.log"; 
 $lockfile = "/var/www/html/TransparencyBot/meeting_active.info";
 $lockfile_agenda = "/var/www/html/TransparencyBot/agenda_active.info";
+$lockfile_dead = "/var/www/html/TransparencyBot/bot_dead.info";
 $logo = "/wp-content/uploads/2017/07/MarylandPiratePartySmall.png";
 // who talks
 global $speakers;
