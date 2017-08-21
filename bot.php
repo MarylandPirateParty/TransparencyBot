@@ -1,6 +1,10 @@
 <?php
 //Also inclue our config file 
 include("config.php"); 
+if (file_exists($lockfile_dead)){
+    error_log(date('r')." Bot System is offline ($lockfile_dead) \n", 3 , $debug_log);
+    die();   
+}
 exec("ps -A | grep -i php | grep -v grep", $pids);
 $instances = count($pids);
 if ($instances == 2) {
