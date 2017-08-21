@@ -12,7 +12,7 @@ if ($instances > 2) {
     exit(0);
 }
 if ($instances == 2) {
-    error_log(date('r')." Bot System is Healthy : $instances \n", 3 , $debug_log);
+    //error_log(date('r')." Bot System is Healthy : $instances \n", 3 , $debug_log);
     exit(0);
 }
 if ($instances == 1) {
