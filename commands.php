@@ -73,7 +73,14 @@ if ($pos !== false){
   }
 }
 
-
+//
+//// DISABLE BOT ON ERROR
+//
+$pos = strpos($server['READ_BUFFER'], 'ERROR');
+if ($pos !== false){ 
+   error_log("***ERROR DETECTED \n", 3, $debug_log);          
+   touch($lockfile_dead);
+}
 
 //
 //// today's history
