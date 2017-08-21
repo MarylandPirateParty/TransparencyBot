@@ -7,11 +7,18 @@ if (file_exists($lockfile_dead)){
 }
 exec("ps -A | grep -i php | grep -v grep", $pids);
 $instances = count($pids);
+if ($instances > 2) {
+    error_log(date('r')." Bot System is **NOT** Healthy : $instances \n", 3 , $debug_log);
+    exit(0);
+}
 if ($instances == 2) {
     error_log(date('r')." Bot System is Healthy : $instances \n", 3 , $debug_log);
     exit(0);
 }
-error_log(date('r')." Bot is Missing - DOING CPR \n", 3 , $debug_log);
+if ($instances == 1) {
+    error_log(date('r')." Bot System is responds with 1 not 2 : $instances \n", 3 , $debug_log);
+}
+error_log(date('r')." Bot is Missing - Launching NEW Bot \n", 3 , $debug_log);
 // $i is our command counter
 $i=0;
 //now that we are good to begin set the timeout limit to 0 so the page wont time out. 
