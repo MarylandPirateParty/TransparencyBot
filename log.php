@@ -29,6 +29,12 @@ if(file_exists($lockfile) && $i > 100){
   error_log(date('r')." [receive] [$i] ".$server['READ_BUFFER'], 3, $debug_log);
 }
 
+if ($slack_url != ''){  
+  // PUSH COMM TO SLACK
+  $slack = $server['READ_BUFFER'];
+  $command = "curl -X POST -H 'Content-type: application/json' --data '{\"text\":\"$slack\"}' $slack_url";
+  exec($command);
+}
 
 if(file_exists($lockfile_agenda) && $i > 100){
   $parts = explode("!",$server['READ_BUFFER']);
