@@ -11,5 +11,5 @@ print_r($_POST['body']);
     //echo "Key: $key<br />\n";
 //    error_log(date('r')." [slack receive] [$key] \n", 3, $slack_log); 
 //}
-echo $response; 
+echo json_encode($response); 
 ?>
