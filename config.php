@@ -1,5 +1,5 @@
 <?php 
-$bot_local_user = exec('whoami');
+//$bot_local_user = exec('whoami');
 date_default_timezone_set("America/New_York");
 // IRC command prefix
 $command_prefix = "+";
