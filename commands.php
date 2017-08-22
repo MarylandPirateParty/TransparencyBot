@@ -138,7 +138,16 @@ if ($pos !== false){
    touch($lockfile_dead);
 }
 
-
+// post messages from slack users
+$handle = fopen($slack_buffer, "r");
+if ($handle) {
+    while (($line = fgets($handle)) !== false) {
+        // process the line read.
+        SendCommand("PRIVMSG #mdpp :Slack User - $line \n\r");
+    }
+    fclose($handle);
+    unlink($slack_buffer);
+}
 
 
 
