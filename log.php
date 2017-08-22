@@ -29,15 +29,18 @@ if(file_exists($lockfile) && $i > 100){
   error_log(date('r')." [receive] [$i] ".$server['READ_BUFFER'], 3, $debug_log);
 }
 
+
 if ($slack_url != ''){  
   // PUSH COMM TO SLACK
-  $pos = strpos($server['READ_BUFFER'], 'PING');
-  if($pos === false){
+  $pos_t1 = strpos($server['READ_BUFFER'], 'MDPPbot');
+  $pos_t2 = strpos($server['READ_BUFFER'], 'PING');
+  if ($pos_t1 === false && $pos_t2 === false){
     $slack = $server['READ_BUFFER'];
     $command = "curl -X POST -H 'Content-type: application/json' --data '{\"text\":\"$slack\"}' $slack_url";
     exec($command);
-  }
+   }
 }
+
 
 if(file_exists($lockfile_agenda) && $i > 100){
   $parts = explode("!",$server['READ_BUFFER']);
