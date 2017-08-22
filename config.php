@@ -1,4 +1,5 @@
 <?php 
+$bot_local_user = exec('whoami');
 date_default_timezone_set("America/New_York");
 // IRC command prefix
 $command_prefix = "+";
@@ -23,4 +24,8 @@ $logo = "/wp-content/uploads/2017/07/MarylandPiratePartySmall.png";
 // who talks
 global $speakers;
 $speakers=array();
+
+
+// SLACK APPLICATION
+$slack_url = "https://hooks.slack.com/services/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";
 ?>
