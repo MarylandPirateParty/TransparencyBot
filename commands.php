@@ -150,4 +150,14 @@ if ($i > 120){
 }
 
 
+//
+//// post the meeting to wordpress blog?
+//
+$pos = strpos($server['READ_BUFFER'], $command_prefix.'restart');
+if ($pos !== false){ 
+  // we need to know who to send the history to...
+  SendCommand("PRIVMSG BaltimoreHacker :Bot Restarting \n\r");  
+  exec('killall php');
+}
+
 ?>
