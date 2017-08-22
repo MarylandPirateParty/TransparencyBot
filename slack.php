@@ -1,6 +1,7 @@
 <?PHP
 // use a buffer file fo imcomming post messages from slack
-echo "<pre>";
-print_r($_POST);
-echo "</pre>";
+$type = $_POST['body']['type'];
+$token = $_POST['body']['token'];
+$challenge = $_POST['body']['challenge'];
+echo $challenge;
 ?>
