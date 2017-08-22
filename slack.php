@@ -5,6 +5,6 @@ $type = $_POST['body']['type'];
 $token = $_POST['body']['token'];
 $challenge = $_POST['body']['challenge'];
 //echo $challenge;
-error_log(date('r')." [slack receive] [$type] [$token] [$challenge] \n", 3, $debug_log);
+error_log(date('r')." [slack receive] [$type] [$token] [$challenge] \n", 3, $slack_log);
 echo "test";
 ?>
