@@ -5,6 +5,5 @@ $response=array('body');
 $type = $_POST['body']['type'];
 $token = $_POST['body']['token'];
 $challenge = $_POST['body']['challenge'];
-$response['body'] = $challenge;
-echo $response;
+echo $challenge;
 ?>
