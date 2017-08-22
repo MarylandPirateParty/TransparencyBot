@@ -1,4 +1,7 @@
 <?PHP
+  
+// user commands
+  
 //
 //// help 
 //
@@ -73,14 +76,7 @@ if ($pos !== false){
   }
 }
 
-//
-//// DISABLE BOT ON ERROR
-//
-$pos = strpos($server['READ_BUFFER'], 'ERROR');
-if ($pos !== false){ 
-   error_log("***ERROR DETECTED \n", 3, $debug_log);          
-   touch($lockfile_dead);
-}
+
 
 //
 //// today's history
@@ -105,9 +101,45 @@ if ($pos !== false){
 //
 $pos = strpos($server['READ_BUFFER'], $command_prefix.'email');
 if ($pos !== false){ 
+  $to = 'baltimorehacker@gmail.com';
   // we need to know who to send the history to...
-  SendCommand("PRIVMSG BaltimoreHacker :History Requested \n\r");  
+  // To send HTML mail, the Content-type header must be set
+  $headers[] = 'MIME-Version: 1.0';
+  $headers[] = 'Content-type: text/html; charset=iso-8859-1';
+  // Additional headers
+  $headers[] = 'To: Mary <mary@example.com>, Kelly <kelly@example.com>';
+  $headers[] = 'From: MDPPbot <MDPPbot@mdpirateparty.org>';
+  $headers[] = 'Cc: captain@mdpirateparty.org';
+  //$headers[] = 'Bcc: birthdaycheck@example.com';
+  // Mail it
+  mail($to, "IRC Meeting Notes", $server['READ_BUFFER'], implode("\r\n", $headers));
 }
+
+
+
+// system commands
+
+//
+//// Welcome on join
+//
+$pos = strpos($server['READ_BUFFER'], 'JOIN #mdpp');
+if ($pos !== false){ 
+   SendCommand("PRIVMSG BaltimoreHacker :User has (re)joined MDPP \n\r");    
+}
+
+
+
+//
+//// DISABLE BOT ON ERROR
+//
+$pos = strpos($server['READ_BUFFER'], 'ERROR');
+if ($pos !== false){ 
+   error_log("***ERROR DETECTED \n", 3, $debug_log);          
+   touch($lockfile_dead);
+}
+
+
+
 
 
 ?>
