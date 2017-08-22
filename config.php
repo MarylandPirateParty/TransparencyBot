@@ -17,7 +17,6 @@ $agenda_log = "/var/www/html/TransparencyBot/".$shortname.'_agenda_'.date('Y-m-d
 // log file to monitor bot performance
 global $debug_log;
 $debug_log = "/var/www/html/TransparencyBot/debug.log"; 
-$slack_log = "/var/www/html/TransparencyBot/slack.log";
 $lockfile = "/var/www/html/TransparencyBot/meeting_active.info";
 $lockfile_agenda = "/var/www/html/TransparencyBot/agenda_active.info";
 $lockfile_dead = "/var/www/html/TransparencyBot/bot_dead.info";
@@ -29,4 +28,6 @@ $speakers=array();
 
 // SLACK APPLICATION
 $slack_url = "https://hooks.slack.com/services/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";
+$slack_log = "/var/www/html/TransparencyBot/slack.log";
+$slack_buffer = "/var/www/html/TransparencyBot/slack.buffer"; 
 ?>
