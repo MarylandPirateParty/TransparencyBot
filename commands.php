@@ -138,7 +138,7 @@ if ($pos !== false){
 }
 
 
-if ($i > 120){
+if ($i > 100){
   // post messages from slack users
   if (file_exists($slack_buffer)){
     foreach(file($slack_buffer) as $line) {
