@@ -138,7 +138,7 @@ if ($pos !== false){
    touch($lockfile_dead);
 }
 
-// allow warmup
+/* allow warmup
 if ($i > 120){
   // post messages from slack users
   if (file_exists($slack_buffer)){
@@ -150,6 +150,6 @@ if ($i > 120){
   }
   }
 }
-
+*/
 
 ?>
