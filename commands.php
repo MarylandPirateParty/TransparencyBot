@@ -138,17 +138,18 @@ if ($pos !== false){
    touch($lockfile_dead);
 }
 
-// post messages from slack users
-$handle = fopen($slack_buffer, "r");
-if ($handle) {
-    while (($line = fgets($handle)) !== false) {
-        // process the line read.
-        SendCommand("PRIVMSG #mdpp :Slack User - $line \n\r");
+// allow warmup
+if ($i > 120){
+  // post messages from slack users
+  if (file_exists($slack_buffer)){
+    foreach(file($slack_buffer) as $line) {
+      // process the line read.
+      SendCommand("PRIVMSG #mdpp :Slack User says $line \n\r");
     }
-    fclose($handle);
     unlink($slack_buffer);
+  }
+  }
 }
-
 
 
 ?>
