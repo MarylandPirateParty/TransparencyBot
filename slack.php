@@ -9,8 +9,10 @@ print_r($data);
 $buffer = ob_get_clean();
 error_log(date('r').": $buffer \n", 3 , $slack_log);
 // write mesasage to buffer
-$fh = fopen($slack_buffer, 'a') or die("can't open file");
-$stringData = $data['event']['text']."\n";
-fwrite($fh, $stringData);
-fclose($fh);
+if (empty($data['event']['bot_id'])){
+  $fh = fopen($slack_buffer, 'a') or die("can't open file");
+  $stringData = $data['event']['text']."\n";
+  fwrite($fh, $stringData);
+  fclose($fh);
+}
 ?>
