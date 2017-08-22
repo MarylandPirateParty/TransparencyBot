@@ -143,7 +143,7 @@ if ($i > 100){
   if (file_exists($slack_buffer)){
     foreach(file($slack_buffer) as $line) {
       // process the line read.
-      SendCommand("PRIVMSG #mdpp :Slack User says $line \n\r");
+    //  SendCommand("PRIVMSG #mdpp :Slack User says $line \n\r");
     }
     unlink($slack_buffer);
   }
