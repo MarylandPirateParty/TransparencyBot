@@ -35,7 +35,8 @@ if ($slack_url != ''){
   // PUSH COMM TO SLACK
   $pos_t1 = strpos($server['READ_BUFFER'], 'MDPPbot');
   $pos_t2 = strpos($server['READ_BUFFER'], 'PING');
-  if ($pos_t1 === false && $pos_t2 === false){
+  $pos_t4 = strpos($server['READ_BUFFER'], 'NOTICE');
+  if ($pos_t1 === false && $pos_t2 === false && $pos_t4 === false){
     $slack = $server['READ_BUFFER'];
     $command = "curl -X POST -H 'Content-type: application/json' --data '{\"text\":\"$slack\"}' $slack_url";
     exec($command);
