@@ -4,4 +4,8 @@ $data = json_decode(file_get_contents('php://input'), true);
 $response=array();
 $response['challenge']=$data['challenge'];
 echo json_encode($response); 
+ob_start();
+print_r($data);
+$buffer = ob_get_clean();
+error_log(date('r').": $buffer \n", 3 , $slack_log);
 ?>
