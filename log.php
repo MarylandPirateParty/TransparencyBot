@@ -9,7 +9,8 @@ if(file_exists($lockfile) && $i > 100){
       $pos_t1 = strpos($server['READ_BUFFER'], 'MDPPbot');
       $pos_t2 = strpos($server['READ_BUFFER'], 'PING');
       $pos_t3 = strpos($server['READ_BUFFER'], 'ChanServ');
-      if ($pos_t1 === false && $pos_t2 === false){
+      $pos_t4 = strpos($server['READ_BUFFER'], 'NOTICE');
+      if ($pos_t1 === false && $pos_t2 === false && $pos_t4 === false){
         if(isset($speakers[$name])){
             $speakers[$name] = $speakers[$name] + 1;
         }else{
