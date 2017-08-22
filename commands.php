@@ -107,7 +107,6 @@ if ($pos !== false){
   $headers[] = 'MIME-Version: 1.0';
   $headers[] = 'Content-type: text/html; charset=iso-8859-1';
   // Additional headers
-  $headers[] = 'To: Mary <mary@example.com>, Kelly <kelly@example.com>';
   $headers[] = 'From: MDPPbot <MDPPbot@mdpirateparty.org>';
   $headers[] = 'Cc: captain@mdpirateparty.org';
   //$headers[] = 'Bcc: birthdaycheck@example.com';
@@ -138,7 +137,7 @@ if ($pos !== false){
    touch($lockfile_dead);
 }
 
-/* allow warmup
+
 if ($i > 120){
   // post messages from slack users
   if (file_exists($slack_buffer)){
@@ -148,8 +147,7 @@ if ($i > 120){
     }
     unlink($slack_buffer);
   }
-  }
 }
-*/
+
 
 ?>
