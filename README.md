@@ -9,6 +9,8 @@ IRC Bot used for Logging Weekly Meetings
 * E-Mail notifications
 * Web access for prior meetings
 * Live stream of meeting to website
+* Help system
+* Remote restart
 
 ## Install
 * cd /var/www/html; git clone https://github.com/MarylandPirateParty/TransparencyBot.git; chown -R www-data:www-data TransparencyBot 
