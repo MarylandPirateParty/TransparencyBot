@@ -123,7 +123,8 @@ if ($pos !== false){
 //
 $pos = strpos($server['READ_BUFFER'], 'JOIN #mdpp');
 if ($pos !== false){ 
-   SendCommand("PRIVMSG BaltimoreHacker :User has (re)joined MDPP \n\r");    
+   SendCommand("PRIVMSG BaltimoreHacker :User has (re)joined MDPP \n\r"); 
+   SendCommand("PRIVMSG #mdpp :Welcome to the Maryland Pirate Party Meeting Room, if you can, let us know what county you are in. \n\r");   
 }
 
 
